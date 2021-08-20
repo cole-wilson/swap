@@ -10,10 +10,13 @@ except ModuleNotFoundError:
 from slack_bolt.oauth.oauth_settings import OAuthSettings
 from slack_bolt.oauth.callback_options import CallbackOptions
 from slack_bolt.response import BoltResponse
+from slack_sdk import WebClient
 
 def success(args):
 	user_id = args.installation.user_id
 	user_token = args.installation.user_token
+	# nnn = user_id not in db.keys()
+	nnn = True
 	db[user_id] = user_token
 	response = f"""yay!
 
@@ -28,6 +31,15 @@ def success(args):
 
 	after a day (or less), everything will return back to normal automatically!
 	"""
+	if nnn:
+		try:
+			bot_client = WebClient(token=os.getenv('BOT_TOKEN'))
+			bot_client.chat_postMessage(
+				channel="swap",
+				text=f"<@{user_id}> just joined/rejoined! We now have {len(db.keys())-4} people!"
+			)
+		except:
+			pass
 	return BoltResponse(status=200,body=response)
 
 def failure(args):
