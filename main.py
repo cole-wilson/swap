@@ -18,7 +18,7 @@ def success(args):
 	response = f"""yay!
 
 	you have successfully signed up for the Great Hackclub Profile Swap of 2021!
-	so far [{len(db.keys())}] people have signed up. I'm waiting for a bit more people!
+	so far [{len(db.keys())-1}] people have signed up. I'm waiting for a bit more people!
 	head over to #swap on slack for updates
 
 	i will ping you when your profile has been updated!
