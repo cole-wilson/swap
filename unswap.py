@@ -1,3 +1,4 @@
+[input('ARE YOU SURE!!!!!?!????') for i in range(10)]
 import os
 import json
 import urllib.request as ur
