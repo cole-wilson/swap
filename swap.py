@@ -11,10 +11,15 @@ if open('um').read() == 'swap':
 with open('um', 'w+') as f:
 	f.write('swap')
 
-user_ids = list(db.keys())
-user_ids = list(filter(lambda i: i not in [
+blacklist = [
+	"U02BVDP7G5Q",
+	"U02BSCXFXA9",
+	"U01651Q77EV",
 	"backup"
-], user_ids))
+] # remember to update main.py too
+
+user_ids = list(db.keys())
+user_ids = list(filter(lambda i: i not in blacklist, user_ids))
 
 try:
 	from slack_sdk import WebClient
