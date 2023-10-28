@@ -6,12 +6,17 @@ try:
 except ModuleNotFoundError:
 	os.system('pip3 install slack_bolt')
 	from slack_bolt import App
-
+ammount = 7
 from slack_bolt.oauth.oauth_settings import OAuthSettings
 from slack_bolt.oauth.callback_options import CallbackOptions
 from slack_bolt.response import BoltResponse
 from slack_sdk import WebClient
 
+from flask import Flask
+app=Flask(__name__)
+app.route('/')(lambda: 'the swap signup window has passed! may be back later')
+app.run(host="0.0.0.0",port=8080)
+exit()
 def success(args):
 	user_id = args.installation.user_id
 	user_token = args.installation.user_token
@@ -21,7 +26,7 @@ def success(args):
 	response = f"""yay!
 
 	you have successfully signed up for the Great Hackclub Profile Swap of 2021!
-	so far [{len(db.keys())-4}] people have signed up. I'm waiting for a bit more people!
+	so far [{len(db.keys())-ammount}] people have signed up. I'm waiting for a bit more people!
 	head over to #swap on slack for updates
 
 	i will ping you when your profile has been updated!
@@ -36,7 +41,7 @@ def success(args):
 			bot_client = WebClient(token=os.getenv('BOT_TOKEN'))
 			bot_client.chat_postMessage(
 				channel="swap",
-				text=f"<@{user_id}> just joined/rejoined! We now have {len(db.keys())-4} people!"
+				text=f"<@{user_id}> just joined/rejoined! We now have {len(db.keys())-ammount} people!"
 			)
 		except:
 			pass

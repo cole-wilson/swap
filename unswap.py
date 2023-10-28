@@ -1,4 +1,4 @@
-[input('ARE YOU SURE!!!!!?!????') for i in range(10)]
+assert input('yes?') == "yes!"
 import os
 import json
 import urllib.request as ur

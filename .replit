@@ -1,0 +1,10 @@
+entrypoint = "main.py"
+modules = ["python-3.8:v2-20230907-3d66d15"]
+
+hidden = [".pythonlibs"]
+
+[nix]
+channel = "stable-23_05"
+
+[env]
+LANG = "en_US.UTF-8"
